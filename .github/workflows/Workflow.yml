@@ -29,7 +29,7 @@ jobs:
                 path: node_modules  
                 key: dep-cache-${{ hashFiles('./package.json') }}
             - name: "check condition"
-              if: steps.cache-prems.outcome == true
+              if: steps.cache-prems.outcome == 'true'
               run: write-host "cache is true"
 
                   
