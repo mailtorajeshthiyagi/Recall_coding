@@ -1,0 +1,32 @@
+name: Deployment
+on:  
+    push:
+    workflow_dispatch:
+jobs:
+    testing:
+        runs-on: [windows-latest]
+        steps:
+            - name: check out repo
+              uses: actions/checkout@v4
+            - name: create cache
+              id: cache-prems
+              uses: actions/cache@v3
+              with:
+                key: dep-cache-${{ hashFiles('./package.json') }}
+            - name: git installation
+              run: npm install
+    deploy:
+        needs: testing
+        runs-on: windows-latest
+        steps:
+            - name: check out repot
+              uses: actions/checkout@v4
+            - name: restored cache
+              id: cache-prems
+              uses: actions/cache@v3
+              with:
+                key: dep-cache-${{ hashFiles('./package.json') }}
+
+                  
+ 
+
