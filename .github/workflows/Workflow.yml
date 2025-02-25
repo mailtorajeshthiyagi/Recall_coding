@@ -19,9 +19,9 @@ jobs:
         needs: testing
         runs-on: windows-latest
         steps:
-            - name: check out repot
+            - name: check out repotory
               uses: actions/checkout@v4
-            - name: restored cache
+            - name: restored cache1
               id: cache-prems
               uses: actions/cache@v3
               with:
