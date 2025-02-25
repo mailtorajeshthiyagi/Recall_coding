@@ -22,12 +22,15 @@ jobs:
         steps:
             - name: check out repotory
               uses: actions/checkout@v4
-            - name: restored cache1
+            - name: restored cache2
               id: cache-prems
               uses: actions/cache@v3
               with:
                 path: node_modules  
                 key: dep-cache-${{ hashFiles('./package.json') }}
+            - name: "check condition"
+              if: steps.cache-prems.outcome == true
+              run: write-host "cache is true"
 
                   
  
