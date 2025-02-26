@@ -5,6 +5,9 @@ on:
 jobs:
     testing:
         runs-on: [windows-latest]
+        outputs:
+          script_file: ${{steps.publish.outputs.script_file}}
+
         steps:
             - name: check out repo
               uses: actions/checkout@v4
@@ -16,12 +19,21 @@ jobs:
                 key: dep-cache-${{ hashFiles('./package.json') }}
             - name: git installation
               run: npm install
+            - name: send variablename
+              id: publish
+              run: |
+                $a = "Rajesh"
+                write-output "script_file=$a" >> $env:GITHUB_output
     deploy:
         needs: testing
         runs-on: windows-latest
         steps:
             - name: check out repotory
               uses: actions/checkout@v4
+            - name: read from another runner1
+              run:
+                $a= ${{needs.testing.outputs.script_file}}
+                write-host "My name is $a"
             - name: restored cache21
               id: cache-prems
               uses: actions/cache@v3
