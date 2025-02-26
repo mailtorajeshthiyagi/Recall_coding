@@ -2,6 +2,8 @@ name: Deployment
 on:  
     push:
     workflow_dispatch:
+env: 
+  env_dbname: ${{$secrets.DBNAME}}
 jobs:
     testing:
         runs-on: [windows-latest]
@@ -9,6 +11,8 @@ jobs:
           script_file: ${{steps.publish.outputs.script_file}}
 
         steps:
+            - name: your name of the db is 
+              run: write-host ${{env.env_dbname}}
             - name: check out repo
               uses: actions/checkout@v4
             - name: create cache
