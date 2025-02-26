@@ -29,12 +29,12 @@ jobs:
                 key: dep-cache-${{ hashFiles('./package.json') }}
             - name: git installation
               run: npm install
-            - name: send variablename
+            - name: send variablename1
               id: publish
               run: |
                 $a = "Rajesh"
                 write-output "script_file=$a" >> $env:GITHUB_output
-    deploy:
+  deploy:
         needs: testing
         runs-on: windows-latest
         steps:
