@@ -12,13 +12,15 @@ jobs:
     runs-on: [windows-latest]
     outputs:
         script_file: ${{steps.publish.outputs.script_file}}
-    environment:                     
-         testing    
+    environment:  testing
+    env: 
+       username: ${{vars.EUSERNAME}}
+               
     steps:
             - name: your name of the db is 
               run: write-host ${{env.env_dbname}}
             - name: your name of the username is 
-              run: write-host ${{vars.EUSERNAME}}
+              run: write-host ${{ENV.username}}
             - name: check out repo
               uses: actions/checkout@v4
             - name: create cache
