@@ -30,7 +30,8 @@ jobs:
                 path: node_modules
                 key: dep-cache-${{ hashFiles('./package.json') }}
             - name: git installation
-              run: npm install
+              continue-on-error: true
+              run: npm instalation
             - name: send variablename1
               id: publish
               run: |
