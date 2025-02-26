@@ -31,9 +31,8 @@ jobs:
             - name: check out repotory
               uses: actions/checkout@v4
             - name: read from another runner1
-              run:
-                $a= ${{needs.testing.outputs.script_file}}
-                write-host "My name is $a"
+              run:                
+                write-host "My name is ${{needs.testing.outputs.script_file}}"
             - name: restored cache21
               id: cache-prems
               uses: actions/cache@v3
