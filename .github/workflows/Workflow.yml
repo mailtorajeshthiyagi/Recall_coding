@@ -3,7 +3,7 @@ on:
     push:
     workflow_dispatch:
 env: 
-  env_dbname: ${{$secret.DBNAME}}
+  env_dbname: ${{secret.DBNAME}}
 jobs:
     testing:
         runs-on: [windows-latest]
