@@ -1,8 +1,8 @@
 name: deployment
-on: push
+on: workflow_call
 jobs:
     testing:
      runs-on: windows-latest
      steps:
         - name: What is your name
-          run: i am another job
+          run: write-host"  i am another job"
