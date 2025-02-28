@@ -10,7 +10,7 @@ jobs:
   testing:
     strategy:
       matrix:
-        os: [windows-latest]
+        os: [windows-latest , ubuntu-latest]
     runs-on: ${{matrix.os}}
     outputs:
         script_file: ${{steps.publish.outputs.script_file}}
@@ -65,7 +65,7 @@ jobs:
               if: steps.cache-prems.outputs.cache-hit == 'true'
               run: write-host "cache is true"
   failure:
-    needs: [testing]      
+    needs: [testing,deploy]      
     if: failure()
     uses: ./.github/workflows/workflow_test.yml
     
