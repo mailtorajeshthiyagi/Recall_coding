@@ -21,7 +21,7 @@ jobs:
     steps:
             - name : check os  
               if: runner.os == 'windows'
-              run: "os is windows"
+              run: write-host "os is windows"
             - name: your name of the db is 
               run: write-host ${{env.env_dbname}}
             - name: your name of the username is 
