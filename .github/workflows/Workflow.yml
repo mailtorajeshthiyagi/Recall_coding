@@ -10,7 +10,7 @@ jobs:
   testing:
     strategy:
       matrix:
-        os: [windows-latest , ubuntu-latest]
+        os: [windows-latest]
     runs-on: windows-latest
     outputs:
         script_file: ${{steps.publish.outputs.script_file}}
@@ -21,7 +21,7 @@ jobs:
     steps:
             - name : check os  
               if: runner.os == 'windows'
-              run: write-host "os is windows"
+              run: write-hosst "os is windows"
             - name: your name of the db is 
               run: write-host ${{env.env_dbname}}
             - name: your name of the username is 
