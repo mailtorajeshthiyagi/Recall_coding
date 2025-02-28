@@ -17,9 +17,11 @@ jobs:
     environment:  testing
     env: 
        username: ${{vars.EUSERNAME}}
-    if: runner.os == 'windows'
-    steps:  
-        
+   
+    steps:
+            - name : check os  
+              if: runner.os == 'windows'
+              run: "os is windows"
             - name: your name of the db is 
               run: write-host ${{env.env_dbname}}
             - name: your name of the username is 
@@ -43,8 +45,11 @@ jobs:
   deploy:
         needs: testing
         runs-on: windows-latest
-        if: runner.os == 'windows'
+
         steps:
+            - name: check OS
+              if: runner.os == 'windows'
+              run: write-host "windows"
             - name: check out repotory
               uses: actions/checkout@v4
             - name: read from another runner1
