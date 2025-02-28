@@ -1,22 +1,25 @@
 name: Deployment
 on:  
     push:
+      branches:
+         - master
     workflow_dispatch:
-
-
 env: 
   env_dbname: ${{secrets.DBNAME}}
-
 jobs:
   testing:
-    runs-on: [windows-latest]
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest]
+    runs-on: ${{matrix.os}}
     outputs:
         script_file: ${{steps.publish.outputs.script_file}}
     environment:  testing
     env: 
        username: ${{vars.EUSERNAME}}
-               
-    steps:
+    if: runner.os == 'windows'
+    steps:  
+        
             - name: your name of the db is 
               run: write-host ${{env.env_dbname}}
             - name: your name of the username is 
@@ -32,7 +35,7 @@ jobs:
             - name: git installation
               continue-on-error: true
               run: npm instalation
-            - name: send variablename1
+            - name: send variablename
               id: publish
               run: |
                 $a = "Rajesh"
@@ -40,6 +43,7 @@ jobs:
   deploy:
         needs: testing
         runs-on: windows-latest
+        if: runner.os == 'windows'
         steps:
             - name: check out repotory
               uses: actions/checkout@v4
