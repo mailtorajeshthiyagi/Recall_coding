@@ -21,6 +21,7 @@ jobs:
     steps:
             - name : check os  
               if: runner.os == 'windows'
+              continue-on-error: true
               run: write-hosst "os is windows"
             - name: your name of the db is 
               run: write-host ${{env.env_dbname}}
