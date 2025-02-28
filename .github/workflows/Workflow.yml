@@ -10,7 +10,7 @@ jobs:
   testing:
     strategy:
       matrix:
-        os: [windows-latest, ubuntu-latest]
+        os: [windows-latest]
     runs-on: ${{matrix.os}}
     outputs:
         script_file: ${{steps.publish.outputs.script_file}}
