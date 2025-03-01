@@ -20,9 +20,8 @@ jobs:
    
     steps:
             - name : check os  
-              if: runner.os == 'windows'
-              continue-on-error: true
-              run: write-hosst "os is windows"
+              if: runner.os == 'windows'              
+              run: write-host "os is windows"
             - name: your name of the db is 
               run: write-host ${{env.env_dbname}}
             - name: your name of the username is 
@@ -43,6 +42,12 @@ jobs:
               run: |
                 $a = "Rajesh"
                 write-output "script_file=$a" >> $env:GITHUB_output
+            -  name: upload artifacts
+               id: upload_art
+               uses: actions/upload-artifacts@v4
+               with:
+                 path: ${{github.workspace}}\src\test\test123.txt
+
   deploy:
         needs: testing
         runs-on: windows-latest
@@ -53,6 +58,10 @@ jobs:
               run: write-host "windows"
             - name: check out repotory
               uses: actions/checkout@v4
+            - name: download artifacts
+              uses: actions/download-artifacts@v4
+              with:
+                path: ${{github.workspace}}\src\test\test123.txt
             - name: read from another runner1
               run:                
                 write-host "My name is ${{needs.testing.outputs.script_file}}"
