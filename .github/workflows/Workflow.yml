@@ -44,7 +44,7 @@ jobs:
                 write-output "script_file=$a" >> $env:GITHUB_output
             -  name: upload artifacts
                id: upload_art
-               uses: actions/upload-artifacts@v4
+               uses: actions/upload-artifact@v4
                with:
                  path: ${{github.workspace}}\src\test\test123.txt
 
@@ -59,7 +59,7 @@ jobs:
             - name: check out repotory
               uses: actions/checkout@v4
             - name: download artifacts
-              uses: actions/download-artifacts@v4
+              uses: actions/download-artifact@v4
               with:
                 path: ${{github.workspace}}\src\test\test123.txt
             - name: read from another runner1
