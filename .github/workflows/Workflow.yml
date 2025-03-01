@@ -58,6 +58,8 @@ jobs:
               run: write-host "windows"
             - name: check out repotory
               uses: actions/checkout@v4
+            - name: create folder
+              run: new-item "${{github.workspace}}\src\test" -itemtype directory -force
             - name: download artifacts
               uses: actions/download-artifact@v4
               with:
