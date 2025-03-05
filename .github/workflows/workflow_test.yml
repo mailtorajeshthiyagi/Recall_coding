@@ -1,8 +1,22 @@
 name: deployment
-on: workflow_call
+on: 
+  workflow_call: 
+  workflow_run:
+    workflows: ["workflow.yml"]
+    types: [completed]
+    
 jobs:
     testing:
      runs-on: windows-latest
      steps:
         - name: What is your name
           run: write-host "i am another job"
+        - name: download artifacts
+          id: upload_art
+          uses: actions/download-artifact@v4
+          with:
+            path: ${{github.workspace}}\src\test\test123.txt
+        - name: read content    
+          run: get-content "${{github.workspace}}\src\test\test123.txt"
+        
+        
