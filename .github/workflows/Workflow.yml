@@ -69,7 +69,7 @@ jobs:
             - name: read from another runner1
               run:                
                 write-host "My name is ${{needs.testing.outputs.script_file}}"
-            - name: restored cache21
+            - name: restored cache2
               id: cache-prems
               uses: actions/cache@v3
               with:
