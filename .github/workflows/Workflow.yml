@@ -79,8 +79,7 @@ jobs:
               if: steps.cache-prems.outputs.cache-hit == 'true'
               run: write-host "cache is true"
   failure: 
-    needs: testing   
-    if: failure()
+    needs: testing    
     uses: ./.github/workflows/workflow_test.yml
     
                   
