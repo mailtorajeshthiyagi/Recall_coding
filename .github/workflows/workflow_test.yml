@@ -19,6 +19,6 @@ jobs:
         - name: get-childitem
           run:  get-childitem ${{github.workspace}}\src\test\
         - name: read content    
-          run: get-content "${{github.workspace}}\src\test\*.txt"
+          run: get-content "${{github.workspace}}\src\test\*\*.txt"
         
         
