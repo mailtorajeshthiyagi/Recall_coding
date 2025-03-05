@@ -64,6 +64,8 @@ jobs:
               uses: actions/download-artifact@v4
               with:
                 path: ${{github.workspace}}\src\test
+            - name: read contents
+              run: get-item ${{github.workspace}}\src\test\test123.txt
             - name: read from another runner1
               run:                
                 write-host "My name is ${{needs.testing.outputs.script_file}}"
